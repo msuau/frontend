@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Carambar Blagues</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #fff0f5;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+        min-height: 100vh;
+      }
+      h1 {
+        color: #e63946;
+      }
+      button {
+        background: #ffcc00;
+        border: none;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+        border-radius: 10px;
+        margin-top: 2rem;
+        transition: background 0.2s;
+      }
+      button:hover {
+        background: #ffd633;
+      }
+      .joke-box {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-top: 2rem;
+        max-width: 500px;
+        text-align: center;
+      }
+      .joke-question {
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Bienvenue chez Carambar & Co</h1>
+    <p>Clique pour une blague !</p>
+    <button id="joke-btn">Afficher une blague</button>
+    <div class="joke-box" id="joke-box" style="display: none">
+      <div class="joke-question" id="joke-content"></div>
+      <div class="joke-answer" id="joke-answer"></div>
+    </div>
+    <script>
+      const button = document.getElementById("joke-btn");
+      const jokeBox = document.getElementById("joke-box");
+      const contentEl = document.getElementById("joke-content");
+      const answerEl = document.getElementById("joke-answer");
+      button.addEventListener("click", async () => {
+        try {
+          const res = await fetch(
+            "https://api-blagues-carambar.onrender.com/api/v1/jokes/random"
+          );
+          const data = await res.json();
+          contentEl.textContent = data.content;
+          answerEl.textContent = data.answer;
+          jokeBox.style.display = "block";
+        } catch (err) {
+          contentEl.textContent = "Oups ! Impossible de charger une blague.";
+          answerEl.textContent = "";
+          jokeBox.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>
