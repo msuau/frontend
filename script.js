@@ -9,8 +9,9 @@ jokeContent.textContent = 'Chargement de la blague...';
 try {
 const response = await fetch(API_URL);
 const joke = await response.json();
-jokeContent.textContent = joke.content || 'Oops ! Blague introuvable.';
-jokeAnswer.textContent = joke.answer || ''
+jokeContent.textContent = joke.content || 'Oups ! Blague introuvable.';
+jokeAnswer.textContent = joke.answer || '';
+jokeBtn.textContent = 'Tirer une autre blague';
 } catch (error) {
 console.error(error);
 jokeContent.textContent = 'Erreur lors du chargement de la blague.';
