@@ -1,16 +1,20 @@
-const jokeBtn = document.getElementById('jokeBtn');
-const jokeDisplay = document.getElementById('jokeDisplay');
 
-const API_URL = 'https://api-blagues-carambar.onrender.com/api/v1/jokes/random';
-
-jokeBtn.addEventListener('click', async () => {
-jokeDisplay.textContent = 'Chargement de la blague...';
-try {
-const response = await fetch(API_URL);
-const joke = await response.json();
-jokeDisplay.textContent = joke.text || 'Oops ! Blague introuvable.';
-} catch (error) {
-console.error(error);
-jokeDisplay.textContent = 'Erreur lors du chargement de la blague.';
-}
-});
+const button = document.getElementById("joke-btn");
+const jokeBox = document.getElementById("joke-box");
+const contentEl = document.getElementById("joke-content");
+const answerEl = document.getElementById("joke-answer");
+button.addEventListener("click", async () => {
+    try {
+          const res = await fetch(
+            "https://api-blagues-carambar.onrender.com/api/v1/jokes/random"
+          );
+          const data = await res.json();
+          contentEl.textContent = data.content;
+          answerEl.textContent = data.answer;
+          jokeBox.style.display = "block";
+        } catch (err) {
+          contentEl.textContent = "Oups ! Impossible de charger une blague.";
+          answerEl.textContent = "";
+          jokeBox.style.display = "block";
+        }
+    });      
