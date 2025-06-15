@@ -36,7 +36,6 @@ Assurez-vous que le serveur accepte les requêtes cross-origin (CORS actif côt�
 
 ## 🧑‍💻 Auteur
 
-Projet réalisé par Mathias SUAU
-Dans le cadre de la sélection à la formation CDA.
+Projet réalisé par Mathias SUAU, dans le cadre de la sélection à la formation CDA.
 
 ---
