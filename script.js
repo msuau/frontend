@@ -9,7 +9,7 @@ jokeContent.textContent = 'Chargement de la blague...';
 try {
 const response = await fetch(API_URL);
 const joke = await response.json();
-jokeContent.textContent = joke.content + joke.answer  || 'Oops ! Blague introuvable.';
+jokeContent.textContent = joke.content || 'Oops ! Blague introuvable.';
 jokeAnswer.textContent = joke.answer || ''
 } catch (error) {
 console.error(error);
